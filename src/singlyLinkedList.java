@@ -105,7 +105,7 @@ public class singlyLinkedList {
             deleteAtFirst();
         }
 
-        if(pos == size){
+        else if(pos == size){
             deleteAtLast();
         }
 
