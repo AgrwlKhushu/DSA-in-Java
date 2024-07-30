@@ -61,7 +61,7 @@ public class doublyLinkedList {
 
         else{
             temp = head;
-            for(int i = 0; i < pos - 1; i++){
+            for(int i = 1; i < pos - 1; i++){
                 temp = temp.next;
             }
 
@@ -71,6 +71,64 @@ public class doublyLinkedList {
             new_node.prev = temp;
             temp.next = new_node;
             size++;
+        }
+    }
+
+    static void deleteAtFirst(){
+        if(head == null){
+            System.out.println("List Is Empty");
+            return ;
+        }
+
+        else if(head.next == null){
+            head = null;
+        }
+
+        else {
+            head = head.next;
+            head.prev = null;
+        }
+        size--;
+    }
+
+    static void deleteAtLast(){
+        if(head == null){
+            System.out.println("List is Empty");
+            return;
+        }
+
+        else if(head.next == null){
+            head = null;
+        }
+
+        else{
+            tail = tail.prev;
+            tail.next = null;
+        }
+        size--;
+    }
+
+    static void deleteAtPos(int pos){
+        if(pos < 1 || pos > size){
+            System.out.println("Enter a valid position");
+        }
+
+        else if(pos == 1){
+            deleteAtFirst();
+        }
+
+        else if(pos == size){
+            deleteAtLast();
+        }
+
+        else{
+            temp = head;
+            for(int i = 1; i < pos - 1; i++){
+                temp = temp.next;
+            }
+            temp.next = temp.next.next;
+            temp.next.prev = temp;
+            size--;
         }
     }
 
@@ -102,6 +160,18 @@ public class doublyLinkedList {
         System.out.println(size);
 
         insertAtPos(7, 8);
+        print();
+        System.out.println(size);
+
+        deleteAtFirst();
+        print();
+        System.out.println(size);
+
+        deleteAtLast();
+        print();
+        System.out.println(size);
+
+        deleteAtPos(3);
         print();
         System.out.println(size);
     }
